@@ -9,7 +9,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth, provider } from "../firebase/firebase.config";
-import axios from "axios";
+import UseAxiosPublic from "../hooks/useAxiosPublic";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const AuthContext = createContext();
@@ -49,7 +49,7 @@ const AuthProvider = ({ children }) => {
       if (currentUser) {
         try {
           // Request a JWT from the server using the user's email
-          const res = await axios.post("/auth/jwt", {
+          const res = await UseAxiosPublic.post("/auth/jwt", {
             email: currentUser.email,
           });
 
