@@ -15,6 +15,7 @@ import UseAxiosPublic from "../hooks/useAxiosPublic";
 export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
+  const axiosPublic = UseAxiosPublic();
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [token, setToken] = useState(null);
@@ -49,7 +50,7 @@ const AuthProvider = ({ children }) => {
       if (currentUser) {
         try {
           // Request a JWT from the server using the user's email
-          const res = await UseAxiosPublic.post("/auth/jwt", {
+          const res = await axiosPublic.post("/auth/jwt", {
             email: currentUser.email,
           });
 

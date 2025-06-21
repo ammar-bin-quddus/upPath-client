@@ -1,15 +1,5 @@
-import React from 'react'
-import useRoadmap from '../hooks/useRoadmap'
-
 const Home = () => {
-    
-    const {roadmaps} = useRoadmap();
+  return <div>Home</div>;
+};
 
-    console.log(roadmaps)
-
-  return (
-    <div>Home</div>
-  )
-}
-
-export default Home
+export default Home;
