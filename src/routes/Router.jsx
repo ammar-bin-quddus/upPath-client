@@ -23,14 +23,14 @@ export const router = createBrowserRouter([
           </PrivateRoutes>
         ),
       },
-      {
-        path: "/login",
-        element: <Login />,
-      },
-      {
-        path: "/signup",
-        element: <Register />,
-      },
     ],
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/signup",
+    element: <Register />,
   },
 ]);

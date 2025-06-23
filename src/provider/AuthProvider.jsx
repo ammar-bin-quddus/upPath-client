@@ -20,6 +20,8 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [token, setToken] = useState(null);
 
+  console.log(user);
+
   const handleRegister = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
@@ -55,8 +57,10 @@ const AuthProvider = ({ children }) => {
           });
 
           // Save token locally and update state
-          localStorage.setItem("token", res.data.token);
-          setToken(res.data.token);
+          if (res.data?.token) {
+            localStorage.setItem("token", res.data.token);
+            setToken(res.data.token);
+          }
         } catch (err) {
           console.error("Failed to get JWT token:", err.message);
           setToken(null);
