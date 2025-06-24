@@ -1,9 +1,10 @@
 import { Navigate, useLocation } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
 
 const PrivateRoutes = ({ children }) => {
+  const {user} = useAuth();
   const location = useLocation();
-  const token = localStorage.getItem("token");
-  return token ? children : <Navigate state={location.pathname} to="/login" />;
+  return user?.email ? children : <Navigate state={location.pathname} to="/login" />;
 };
 
 export default PrivateRoutes;

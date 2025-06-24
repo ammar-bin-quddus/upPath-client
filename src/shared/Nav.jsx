@@ -5,7 +5,7 @@ import useAuth from "../hooks/useAuth";
 const Nav = () => {
   const { user, handleLogOut } = useAuth();
   return (
-    <div className="w-full flex justify-between items-center">
+    <div className="w-full flex justify-between items-center px-6 bg-white shadow-sm">
       <div>
         <img className="w-40 h-20" src={logo} alt="logo" />
       </div>

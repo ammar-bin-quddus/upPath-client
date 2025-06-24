@@ -25,11 +25,21 @@ const Register = () => {
   };
 
   const sendUserDataToDb = async (user) => {
-    await axiosPublic.post("/auth/users", {
-      name: user.name,
-      email: user.email,
-      password: user.password || "google",
-    });
+    try {
+      // Save user in the backend
+      await axiosPublic.post("/auth/users", {
+        name: user.name,
+        email: user.email,
+        password: user.password || "google", // fallback for OAuth
+      });
+
+      const jwtRes = await axiosPublic.post("/auth/jwt", { email: user.email });
+
+      // Store token locally
+      localStorage.setItem("token", jwtRes.data.token);
+    } catch (err) {
+      console.error("Failed to save user or fetch token:", err.message || err);
+    }
   };
 
   const onSubmit = async ({ name, email, password }) => {
@@ -41,8 +51,7 @@ const Register = () => {
 
       // update user name
       await updateUser({ displayName: name });
-
-
+      
       // save user to server
       await sendUserDataToDb({ name, email, password });
       navigate("/");
@@ -65,7 +74,7 @@ const Register = () => {
 
       // Save user info in db
       await sendUserDataToDb({ name, email });
-      navigate("/")
+      navigate("/");
     } catch (err) {
       console.error("Google login failed:", err.message || err);
     } finally {
