@@ -45,11 +45,11 @@ const Register = () => {
 
       // save user to server
       await sendUserDataToDb({ name, email, password });
+      navigate("/");
     } catch (error) {
       console.error("registration failed", error.message);
     } finally {
       setLoading(false);
-      navigate("/");
     }
   };
 

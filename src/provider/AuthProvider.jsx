@@ -77,7 +77,7 @@ const AuthProvider = ({ children }) => {
 
     // Clean up the listener when the component unmounts
     return () => unsubscribe();
-  }, [axiosPublic]);
+  }, []);
 
   //console.log(loading)
   const authInfo = {
