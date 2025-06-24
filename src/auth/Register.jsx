@@ -37,19 +37,19 @@ const Register = () => {
       setLoading(true);
 
       // create user with firebase
-      const newUser = await handleRegister(email, password, name);
+      await handleRegister(email, password, name);
 
-      // upadate user name
+      // update user name
       await updateUser({ displayName: name });
 
 
       // save user to server
       await sendUserDataToDb({ name, email, password });
-      navigate("/");
     } catch (error) {
       console.error("registration failed", error.message);
     } finally {
       setLoading(false);
+      navigate("/");
     }
   };
 

@@ -53,7 +53,7 @@ const AuthProvider = ({ children }) => {
         try {
           // Request a JWT from the server using the user's email
           const res = await axiosPublic.post("/auth/jwt", {
-            email: currentUser.email,
+            email: currentUser?.email,
           });
 
           // Save token locally and update state
@@ -77,7 +77,7 @@ const AuthProvider = ({ children }) => {
 
     // Clean up the listener when the component unmounts
     return () => unsubscribe();
-  }, []);
+  }, [axiosPublic]);
 
   //console.log(loading)
   const authInfo = {
